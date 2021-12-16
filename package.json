@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Recursively remove node_modules",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
     "lint": "prettier --check **/*.ts",
     "format": "prettier --write **/*.ts",
