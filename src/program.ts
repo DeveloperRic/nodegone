@@ -23,6 +23,7 @@ export default async function main(argv?: string[]): Promise<void> {
   program.parse(argv)
   opts = program.opts()
   const [target] = program.args
+  validateTarget(target)
   const moduleDirs = collectModuleDirs(target)
   if (moduleDirs.length == 0) {
     debug('Found 0 node_modules. Exiting.')
@@ -48,10 +49,20 @@ function debug(msg: string): void {
 function prompt(query: string, expectedAnswer: string): Promise<boolean> {
   return new Promise(resolve => {
     if (opts.yes) return resolve(true)
-    cli.question(`${query.trimEnd()} `, ans => {
+    query = opts.quiet ? '' : `${query.trimEnd()} `
+    cli.question(query, ans => {
       resolve(ans.toLowerCase() == expectedAnswer.toLowerCase())
     })
   })
+}
+
+function validateTarget(target: string) {
+  if (!fs.existsSync(target)) {
+    throw new Error(`${target} does not exist`)
+  }
+  if (!fs.statSync(target).isDirectory()) {
+    throw new Error(`${target} is not a directory`)
+  }
 }
 
 function collectModuleDirs(top_dir: string): string[] {

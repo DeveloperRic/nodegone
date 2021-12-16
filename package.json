@@ -2,9 +2,11 @@
   "name": "nodegone",
   "version": "1.0.0",
   "description": "Recursively remove node_modules",
+  "main": "index.js",
   "scripts": {
     "lint": "prettier --check **/*.ts",
     "format": "prettier --write **/*.ts",
+    "prebuild": "rm -rf build",
     "build": "tsc",
     "postbuild": "cp package*.json build",
     "test": "jest",
@@ -21,7 +23,11 @@
     "url": "https://github.com/DeveloperRic/nodegone/issues"
   },
   "homepage": "https://github.com/DeveloperRic/nodegone#readme",
+  "dependencies": {
+    "commander": "^8.3.0"
+  },
   "devDependencies": {
+    "@rauschma/stringio": "^1.4.0",
     "@tsconfig/node16": "^1.0.2",
     "@types/jest": "^27.0.3",
     "jest": "^27.4.5",
@@ -30,8 +36,5 @@
     "ts-jest": "^27.1.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
-  },
-  "dependencies": {
-    "commander": "^8.3.0"
   }
 }
