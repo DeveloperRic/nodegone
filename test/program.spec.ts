@@ -28,6 +28,7 @@ const programInvocationVariants = [
   { args: ['artifacts/'], inputs: ['yes'], expectDeleted: true },
   { args: ['artifacts --yes'], inputs: undefined, expectDeleted: true },
   { args: ['artifacts -q'], inputs: ['yes'], expectDeleted: true, expectQuiet: true },
+  { args: ['artifacts -D'], inputs: ['yes'], expectDeleted: false },
 ]
 
 beforeAll(() => process.chdir(__dirname))

@@ -15,4 +15,4 @@ npx nodegone <target> [<opts>]
 | target | Location under which to look | Yes |
 | -q, --quiet | Skip log messages | No |
 | -y, --yes | Skip confirmation messages | No |
-
+| -D, --dry-run | Don't delete, just find directories | No |

@@ -9,6 +9,7 @@ program.argument('<target>', 'Location under which to look')
 program
   .option('-q, --quiet', 'Skip log messages')
   .option('-y, --yes', 'Skip confirmation prompts')
+  .option('-D, --dry-run', 'Don\'t delete, just find directories')
 
 const cli = readline.createInterface({
   input: process.stdin,
@@ -17,6 +18,7 @@ const cli = readline.createInterface({
 let opts: {
   quiet: boolean
   yes: boolean
+  dryRun: boolean
 }
 
 export default async function main(argv?: string[]): Promise<void> {
@@ -27,6 +29,9 @@ export default async function main(argv?: string[]): Promise<void> {
   const moduleDirs = collectModuleDirs(target)
   if (moduleDirs.length == 0) {
     debug('Found 0 node_modules. Exiting.')
+    return
+  }
+  if (opts.dryRun) {
     return
   }
   debug(`About to remove ${moduleDirs.length} directories.`)
