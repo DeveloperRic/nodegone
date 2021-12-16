@@ -2,6 +2,8 @@
 
 Recursively remove node_modules
 
+[![CI](https://github.com/DeveloperRic/nodegone/actions/workflows/main.yml/badge.svg)](https://github.com/DeveloperRic/nodegone/actions/workflows/main.yml)
+
 ## Usage
 
 ```
